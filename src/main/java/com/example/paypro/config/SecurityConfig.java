@@ -19,6 +19,8 @@ public class SecurityConfig {
 				.authorizeHttpRequests(auth -> auth
 						.anyRequest().permitAll()
 				)
+				.headers(headers -> headers
+						.frameOptions(options -> options.sameOrigin()))
 				.formLogin(form -> form
 						.loginPage("/login")
 						.permitAll()
