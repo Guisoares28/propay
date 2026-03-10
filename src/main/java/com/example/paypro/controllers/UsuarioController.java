@@ -41,6 +41,6 @@ public class UsuarioController {
 		
 		redirectAttributes.addFlashAttribute("sucesso", "Usuário cadastrado com sucesso");
 		
-		return "redirect:/login";
+		return "redirect:/login-form";
 	}
 }

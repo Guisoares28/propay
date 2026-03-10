@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.example.paypro.repositories.UsuarioRepository;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
@@ -22,7 +24,7 @@ public class SecurityConfig {
 				.headers(headers -> headers
 						.frameOptions(options -> options.sameOrigin()))
 				.formLogin(form -> form
-						.loginPage("/login")
+						.loginPage("/login-form")
 						.permitAll()
 				)
 				.build();
@@ -33,5 +35,8 @@ public class SecurityConfig {
     	return new BCryptPasswordEncoder();
     }
     
-
+    @Bean
+    public UserDetailsServiceImpl userDetailsServiceImpl(UsuarioRepository usuarioRepository) {
+    	return new UserDetailsServiceImpl(usuarioRepository);
+    }
 }
